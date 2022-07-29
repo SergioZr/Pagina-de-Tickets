@@ -63,20 +63,21 @@
             color: #03e9f4;
             font-size: 12px;
         }
-        .contenedor form a{
+        .contenedor form .iniciar{
             position: relative;
+            background: transparent;
             display: inline-block;
-            padding: 10px 20px;
+            padding: 5px 10px;
             color: #03e9f4;
             font-size: 16px;
             text-decoration: none;
             text-transform: uppercase;
             overflow: hidden;
             transition: .5s;
-            margin-top: 40px;
+            margin-top: 20px;
             letter-spacing: 4px;
         }
-        .contenedor a:hover{
+        .contenedor .iniciar:hover{
             background: #03e9f4;
             color: #ffff;
             border-radius: 5px;
@@ -85,11 +86,11 @@
                         0 0 50px #03e9f4,
                         0 0 100px #03e9f4;
         }
-        .contenedor a span{
+        .contenedor .iniciar span{
             position: absolute;
             display: block;
         }
-        .contenedor a span:nth-child(1){
+        .contenedor .iniciar span:nth-child(1){
             top: 0;
             left: -100%;
             width: 100%;
@@ -105,14 +106,14 @@
                 left: 100%;
             }
         }
-        .contenedor a span:nth-child(2){
+        .contenedor .iniciar span:nth-child(2){
             top: -100%;
             right: 0;
             width: 2px;
             height: 100%;
             background: linear-gradient(180deg, transparent, #03e9f4);
             animation: btn-anim2 1s linear infinite;
-            animation-delay: .25;
+            animation-delay: .5;
         }
         @keyframes btn-anim2{
             0%{
@@ -122,12 +123,12 @@
                 top: 100%;
             }
         }
-        .contenedor a span:nth-child(3){
+        .contenedor .iniciar span:nth-child(3){
             right: -100%;
             bottom: 0;
             width: 100%;
             height: 2px;
-            background: linear-gradient(180deg, transparent, #03e9f4);
+            background: linear-gradient(270deg, transparent, #03e9f4);
             animation: btn-anim3 1s linear infinite;
             animation-delay: .5s;
         }
@@ -139,7 +140,7 @@
                 right: 100%;
             }
         }
-        .contenedor a span:nth-child(4){
+        .contenedor .iniciar span:nth-child(4){
             bottom: -100%;
             left: 0;
             width: 2px;
@@ -157,29 +158,35 @@
             }
         }
     </style>
-    <title>Tecnicos de Soporte</title>
+    <title>Crear un Ticket</title>
+    <script>
+        function miFuncion(){
+            alert("FUNCIONA!!!");
+        }
+    </script>
 </head>
 <body>
     <div class="contenedor">
         <h2>Inicio de Sesion</h2>
         <form action="">
             <div class="usuario">
-                <input type="text" required>
+                <input type="usuario" required>
                 <label>Usuario</label>
-            </div>
+            </div>  
             <div class="usuario">
                 <input type="password" required>
                 <label>Contraseña</label>
             </div>
-            <a href="">
+            <button class="iniciar" onclick="miFuncion()">
                 <span></span>
                 <span></span>
                 <span></span>
                 <span></span>
                 Iniciar
-            </a>
+            </button>
+
         </form>
     </div>
+
 </body>
-<script src="/app/tickets-soporte/src/App.js"></script>
 </html>
