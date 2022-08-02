@@ -1,11 +1,20 @@
-import {createContex} from 'react';
+import {createContext, useContext} from 'react';
+import PocketBase from 'pocketbase';
 
-const contex = createContex();
+const client = new PocketBase('http://localhost:8090');
 
+const authContext = createContext();
+
+
+export const useAuth = () => {
+    const context = useContext(authContext)
+    return context
+}
 export function AuthProvider ({ children }) {
-    const user = {
-        login: true,
-    };
+    const singup = async (request) => {
+        console.log(request)
+        return await client.Users.create(request);
+    }
     
-    return <contex.Provider value={{user}}>{children}</contex.Provider>;
+    return <authContext.Provider value={{singup}}>{children}</authContext.Provider>;
 }
