@@ -38,13 +38,13 @@ export function TicketsUser() {
           <br></br>
           <label>
             Si, por favor
-            <input type="radio" name="consulta" onChange={handelChange} />
+            <input type="radio" name="consulta" />
           </label>
           <br></br>
           <br></br>
           <label>
             No, gracias
-            <input type="radio" name="consulta" onChange={handelChange} />
+            <input type="radio" name="consulta" />
           </label>
         </div>
 
@@ -57,10 +57,17 @@ export function TicketsUser() {
             required
             onChange={handelChange}
           />
-          <label>Ingresa tu ID de AnyDesk</label>
+          <label>Ingresa tu ID de AnyDesk    (Opcional)</label>
         </div>
-        <h2>¿Cúal es el problema?</h2>
 
+        <h2>¿Cúal es el problema?</h2>
+        
+
+        <textarea
+          name="descripcion"
+          placeholder="Describe el problema, se lo más detallado posible por favor."
+        />
+    
         <button className="iniciar">
           <span></span>
           <span></span>
@@ -72,3 +79,14 @@ export function TicketsUser() {
     </div>
   );
 }
+ /*
+         <div className="consulta">
+          <legend>Nivel de prioridad</legend>
+          <select>
+            <option>Bajo</option>
+            <option>Medio</option>
+            <option>Alto</option>
+          </select>
+        </div>
+        <br></br>
+ */

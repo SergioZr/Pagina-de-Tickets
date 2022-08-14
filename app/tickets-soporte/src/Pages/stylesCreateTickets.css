@@ -7,10 +7,20 @@ body{
    font-family: sans-serif;
    background: linear-gradient(#141e30, #243b55);
 }
+textarea {
+   height: 60px;
+   width: 100%;
+   resize: none;
+   background: #263b54;
+   color: #ffff;
+   border: none;
+}
+::placeholder {
+   color: #ffff;
+}
 .consulta{
    font-family: sans-serif;
    color: #ffff;
-
 }
 .contenedor{
    position: absolute;
