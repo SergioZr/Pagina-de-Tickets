@@ -1,50 +1,55 @@
-import { useState } from 'react';
-import './stylesLogin.css';
+import { useState } from "react";
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
+import "./stylesLogin.css";
 
+export function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-
-export function Login(){
-    const [user, setUser] = useState({
-        usuario: "",
-        password: "",
-    }); 
-    const handelChange = ({target: {name,value}}) => {
-        setUser({...user, [name]: value})
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const handelChange = ({ target: { name, value } }) => {
+    setUser({ ...user, [name]: value });
+    console.log(name, value);
+  };
+  async function sendlogin(e) {
+    e.preventDefault();
+    try {
+      await login( user );
+      navigate("/createtickets");
+    } catch (error) {
+      console.log(error);
     }
-    const handelSubmit = e => {
-        e.preventDefault()
-        console.log(user);
-    }
-
-    return(
-        <div className='contenedor'>
-        <h2>Incia Sesion</h2>
-        <form onSubmit={handelSubmit}>
-            <div className="usuario">
-                <input type="usuario" 
-                  name='usuario'
-                  required 
-                  onChange={handelChange}     
-                  />
-                <label>Nombre de usuario</label>
-            </div>  
-            <div className="usuario">
-                <input type="password" 
-                  name='password'
-                  required 
-                  onChange={handelChange}
-                  />
-                <label>Contraseña</label>
-            </div>
-            <button className="iniciar">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                Iniciar!
-            </button>
-      
-        </form>
-      </div>
-          )
   }
+
+  return (
+    <div className="contenedor">
+      <h2>Incia Sesion</h2>
+      <form onSubmit={sendlogin}>
+        <div className="usuario">
+          <input type="email" name="email" required onChange={handelChange} />
+          <label>Correo Electronico</label>
+        </div>
+        <div className="usuario">
+          <input
+            type="password"
+            name="password"
+            required
+            onChange={handelChange}
+          />
+          <label>Contraseña</label>
+        </div>
+        <button className="iniciar">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Iniciar!
+        </button>
+      </form>
+    </div>
+  );
+}

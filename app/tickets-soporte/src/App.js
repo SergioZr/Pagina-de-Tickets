@@ -1,9 +1,9 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import { Home } from './Pages/Home';
-import { Login } from './Pages/Login';
-import { Register } from './Pages/Register';
-import { Tickets } from './Pages/Ticekts';
+import { Home } from './pages/Home';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { TicketsUser } from './pages/CreateTickets';
 import {AuthProvider} from './context/authContext'
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>} />
-        <Route path="/tickets" element={<Tickets/>} />
+        <Route path="/createtickets" element={<TicketsUser/>} />
         <Route path="*" element={<div>404 Not Found</div>} />
       </Routes>
       </AuthProvider>

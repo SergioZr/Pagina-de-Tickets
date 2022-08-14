@@ -1,16 +1,14 @@
-//import PocketBase from 'pocketbase';
 import { useState } from 'react';
 import { useAuth } from '../context/authContext';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 import './styleRestiger.css';
-
-
-//const client = new PocketBase('http://localhost:8090');
-
 
 
 export function Register(){
     const { singup } = useAuth();
+    const navigate = useNavigate();
+    const [setError] = useState();
 
     const [user, setUser] = useState({
         email: "",
@@ -23,10 +21,16 @@ export function Register(){
 
     async function sendlogin( e ){
         e.preventDefault()
-        await singup({
-            ...user,
-            passwordConfirm: user.password
-        }); 
+        try {
+            await singup({
+                ...user,
+                passwordConfirm: user.password
+            });
+            navigate("/tickets");    
+        } catch (error) {
+            setError(error.message);
+        }
+         
     }
  
       
