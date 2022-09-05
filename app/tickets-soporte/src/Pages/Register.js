@@ -19,14 +19,15 @@ export function Register(){
     }
 
 
-    async function sendlogin( e ){
+    async function sendSingUp( e ){
         e.preventDefault()
         try {
             await singup({
                 ...user,
                 passwordConfirm: user.password
             });
-            navigate("/tickets");    
+            console.log(user);
+            navigate("/createtickets");    
         } catch (error) {
             setError(error.message);
         }
@@ -37,7 +38,7 @@ export function Register(){
     return(
         <div className='contenedor'>
         <h2>Resgistro</h2>
-        <form onSubmit={sendlogin}>
+        <form onSubmit={sendSingUp}>
             <div className="usuario">
                 <input type="email" 
                   name='email'

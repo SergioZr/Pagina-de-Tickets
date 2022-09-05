@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "./stylesLogin.css";
 
 export function Login() {
-  const { login } = useAuth();
+  const { login, setValue } = useAuth();
   const navigate = useNavigate();
-
+  
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -18,8 +18,10 @@ export function Login() {
   async function sendlogin(e) {
     e.preventDefault();
     try {
-      await login( user );
+      const userResponse = await login(user);
+      setValue(v => ({...v, user: userResponse.user}));
       navigate("/createtickets");
+      console.log(user);
     } catch (error) {
       console.log(error);
     }

@@ -1,82 +1,87 @@
 import { useState } from "react";
-import { useAuth } from "../context/authContext";
+import { usePocket } from "../context/authContext";
 import "./stylesCreateTickets.css";
 
 export function TicketsUser() {
-  const { login } = useAuth();
 
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
+  const {pocketClient: client, user} = usePocket();
+
+  const [ticket, setTicket] = useState({
+    telefon: "",
+    consulta: "",
+    description: "",
+    anyDeskId: "",
+    users: user.email,
   });
   const handelChange = ({ target: { name, value } }) => {
-    setUser({ ...user, [name]: value });
+    setTicket({ ...ticket, [name]: value });
     console.log(name, value);
   };
-  async function sendlogin(e) {
+
+  async function createTicket(e) {
     e.preventDefault();
+    console.log(ticket);
     try {
-      await login(user);
+      await client.Records.create("tickets", ticket);
     } catch (error) {
       console.log(error);
     }
   }
 
+
   return (
     <div className="contenedor">
-      <h2>¡Crea tu ticket!</h2>
-      <form onSubmit={sendlogin}>
-        <h2>Información de Contacto</h2>
+        <h2>¡Crea tu ticket!</h2>
+        <form onSubmit={createTicket}>
+          <h2>Información de Contacto</h2>
 
-        <div className="usuario">
-          <input type="tel" name="telefono" required onChange={handelChange} />
-          <label>Ingresa tu número de teléfono</label>
-        </div>
+          <div className="usuario">
+            <input type="tel" name="telefon" required onChange={handelChange} />
+            <label>Ingresa tu número de teléfono</label>
+          </div>
 
-        <div className="consulta">
-          <legend>¿Desea soporte remoto?</legend>
+          <div className="consulta">
+            <legend>¿Desea soporte remoto?</legend>
+            <br></br>
+            <label>
+              Si, por favor
+              <input type="radio" name="consulta" onChange={handelChange} />
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+              No, gracias
+              <input type="radio" name="consulta" onChange={handelChange} />
+            </label>
+          </div>
+
           <br></br>
-          <label>
-            Si, por favor
-            <input type="radio" name="consulta" />
-          </label>
-          <br></br>
-          <br></br>
-          <label>
-            No, gracias
-            <input type="radio" name="consulta" />
-          </label>
-        </div>
 
-        <br></br>
+          <div className="usuario">
+            <input
+              type="text"
+              name="anyDeskId"
+              required
+              onChange={handelChange} />
+            <label>Ingresa tu ID de AnyDesk    (Opcional)</label>
+          </div>
 
-        <div className="usuario">
-          <input
-            type="text"
-            name="AnyDeskID"
-            required
+          <h2>¿Cúal es el problema?</h2>
+
+          <textarea
+            name="description"
             onChange={handelChange}
-          />
-          <label>Ingresa tu ID de AnyDesk    (Opcional)</label>
-        </div>
+            placeholder="Describe el problema, se lo más detallado posible por favor." />
 
-        <h2>¿Cúal es el problema?</h2>
-        
-
-        <textarea
-          name="descripcion"
-          placeholder="Describe el problema, se lo más detallado posible por favor."
-        />
-    
-        <button className="iniciar">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          ¡Crear Ticket!
-        </button>
-      </form>
-    </div>
+          <button className="iniciar">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            ¡Crear Ticket!
+          </button>
+        </form>
+      </div>
   );
 }
  /*
