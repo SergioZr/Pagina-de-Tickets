@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { usePocket } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
+
 import "./stylesCreateTickets.css";
 
 export function TicketsUser() {
 
   const {pocketClient: client, user} = usePocket();
+  const navigate = useNavigate();
+
 
   const [ticket, setTicket] = useState({
+    statusT: "",
     telefon: "",
     consulta: "",
     description: "",
@@ -17,12 +22,14 @@ export function TicketsUser() {
     setTicket({ ...ticket, [name]: value });
     console.log(name, value);
   };
+  const statusTicket = () => setTicket(statusT:)
 
   async function createTicket(e) {
     e.preventDefault();
     console.log(ticket);
     try {
       await client.Records.create("tickets", ticket);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -73,7 +80,7 @@ export function TicketsUser() {
             onChange={handelChange}
             placeholder="Describe el problema, se lo más detallado posible por favor." />
 
-          <button className="iniciar">
+          <button className="iniciar" onClick={statusTicket}>
             <span></span>
             <span></span>
             <span></span>

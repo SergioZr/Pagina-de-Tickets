@@ -38,7 +38,7 @@ export function Register(){
     return(
         <div className='contenedor'>
         <h2>Resgistro</h2>
-        <form onSubmit={sendSingUp}>
+        <form onSubmit={sendSingUp }>
             <div className="usuario">
                 <input type="email" 
                   name='email'

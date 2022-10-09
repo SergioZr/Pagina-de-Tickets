@@ -5,13 +5,13 @@ export function Home(){
 
     <ul>
         <li style={{"--clr":"#03e9f4"}}>
-          <NavLink to='/login' data-text="&nbsp;Ticket">&nbsp;Ticket&nbsp;</NavLink>
+          <NavLink to='/login' data-text="&nbsp;Crear Ticket">&nbsp;Crear Ticket&nbsp;</NavLink>
          </li>
         <li style={{"--clr":"#03e9f4"}}>
-          <NavLink to="/register" data-text="&nbsp;Registrate">&nbsp;Registrate&nbsp;</NavLink>
+          <NavLink to="/register" data-text="&nbsp;¡Registrate!">&nbsp;¡Registrate!&nbsp;</NavLink>
         </li>
         <li style={{"--clr":"#03e9f4"}}>
-          <NavLink to="/login" data-text="&nbsp;Técnicos">&nbsp;Técnicos&nbsp;</NavLink>
+          <NavLink to="/login" data-text="&nbsp;Administradores">&nbsp;Administradores&nbsp;</NavLink>
         </li>
     </ul>
     );

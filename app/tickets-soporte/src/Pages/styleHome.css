@@ -2,13 +2,11 @@
   position: relative;
 }
 ul{
-    position: relative;
     display: flex;
     flex-direction: column;
     gap: 30px;
   }
   ul li{
-    position: relative;
     list-style: none;
   }
   ul li a{
